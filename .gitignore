@@ -1,0 +1,33 @@
+# Maven
+target/
+*.jar
+*.war
+*.ear
+*.class
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Dependencies
+dependency-reduced-pom.xml
+
+# Logs
+*.log
+build.log
+
+# Spring Boot
+.gradle
+/build/
+*.gradle
+
+# OS
+Thumbs.db
+.DS_Store
