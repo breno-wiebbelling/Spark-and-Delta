@@ -4,11 +4,13 @@
 
 ```
 project/
-├── pom.xml                    # Maven configuration
+├── build.gradle               # Gradle configuration
+├── settings.gradle            # Gradle project settings
+├── gradlew.bat                # Gradle wrapper (Windows)
+├── gradlew                    # Gradle wrapper (Unix)
 ├── build.bat                  # Build script (run this first)
 ├── run.bat                    # Run script (after building)
 ├── README.md                  # Full documentation
-├── MAVEN_SETUP.md            # Maven installation guide
 ├── QUICK_REFERENCE.md        # This file
 └── src/
     ├── main/
@@ -23,32 +25,28 @@ project/
     └── test/
 ```
 
-## Quick Start (3 Steps)
+## Quick Start (2 Steps)
 
-### 1. Install Maven (if not already installed)
-   - See `MAVEN_SETUP.md` for detailed instructions
-   - Or: `winget install Apache.Maven` (Windows 11+)
-
-### 2. Build the Project
+### 1. Build the Project
    ```bash
    .\build.bat
    ```
    OR manually:
    ```bash
-   mvn clean package -DskipTests
+   .\gradlew.bat clean bootJar
    ```
 
-### 3. Run the Application
+### 2. Run the Application
    ```bash
    .\run.bat
    ```
    OR manually:
    ```bash
-   mvn spring-boot:run
+   .\gradlew.bat bootRun
    ```
    OR after building:
    ```bash
-   java -jar target/spark-delta-sharing-app-1.0.0.jar
+   java -jar build/libs/spark-delta-sharing-app-1.0.0.jar
    ```
 
 The app will start on: **http://localhost:8080**
@@ -155,17 +153,17 @@ After changing config, restart the application.
 
 ### Build Only (No Tests)
 ```bash
-mvn clean package -DskipTests
+.\gradlew.bat clean bootJar -x test
 ```
 
 ### Build and Run Tests
 ```bash
-mvn clean package
+.\gradlew.bat clean build
 ```
 
 ### Run Tests Only
 ```bash
-mvn test
+.\gradlew.bat test
 ```
 
 ### View Application Logs
@@ -177,7 +175,7 @@ mvn test
 
 ### Clean Build Artifacts
 ```bash
-mvn clean
+.\gradlew.bat clean
 ```
 
 ### Stop the Running App
@@ -187,9 +185,9 @@ Press **Ctrl+C** in the terminal
 
 ## Troubleshooting
 
-### "Maven command not found"
-- Install Maven (see `MAVEN_SETUP.md`)
-- Restart your terminal after installing
+### "gradlew.bat is not recognized"
+- Ensure Java is installed and `JAVA_HOME` is set
+- The Gradle wrapper downloads Gradle automatically on first run
 
 ### Port 8080 already in use
 - Change port in `application.yml` or:
@@ -198,9 +196,9 @@ Press **Ctrl+C** in the terminal
   ```
 
 ### Build fails with dependency errors
-- Clear Maven cache: `mvn clean`
+- Clear Gradle cache: `.\gradlew.bat clean`
 - Check internet connection
-- Try: `mvn clean -U package` (update dependencies)
+- Try: `.\gradlew.bat clean build --refresh-dependencies`
 
 ### Spark/Java version issues
 - Check Java version: `java -version` (should be 11+)
@@ -229,7 +227,7 @@ Press **Ctrl+C** in the terminal
 - **Apache Spark**: https://spark.apache.org/
 - **Delta Lake**: https://delta.io/
 - **Delta Sharing**: https://github.com/delta-io/delta-sharing
-- **Maven Docs**: https://maven.apache.org/
+- **Gradle Docs**: https://docs.gradle.org/
 
 ---
 
@@ -240,7 +238,7 @@ Press **Ctrl+C** in the terminal
 | `application.yml` | Configuration | Change ports, paths, server URLs |
 | `DeltaController.java` | REST Endpoints | Add new API endpoints |
 | `DeltaService.java` | Business Logic | Add custom query logic |
-| `pom.xml` | Dependencies | Add more libraries |
+| `build.gradle` | Dependencies | Add more libraries |
 
 ---
 

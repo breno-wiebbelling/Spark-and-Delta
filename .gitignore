@@ -23,10 +23,10 @@ dependency-reduced-pom.xml
 *.log
 build.log
 
-# Spring Boot
-.gradle
+# Gradle
+.gradle/
 /build/
-*.gradle
+!gradle/wrapper/gradle-wrapper.jar
 
 # OS
 Thumbs.db

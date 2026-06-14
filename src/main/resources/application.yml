@@ -1,27 +1,11 @@
 spring:
   application:
     name: spark-delta-sharing-app
-  webflux:
-    base-path: /api
 
 server:
   port: 8080
-  servlet:
-    context-path: /
 
 logging:
   level:
     root: INFO
     com.example: DEBUG
-    org.apache.spark: WARN
-    org.apache.hadoop: WARN
-
-# Delta Lake Configuration
-delta:
-  lake:
-    path: file:///tmp/delta  # Local file path for Delta Lake tables
-  
-  # Delta Sharing Configuration
-  sharing:
-    server-url: http://localhost:8080  # Replace with actual Delta Sharing server URL
-    token: demo-token                   # Replace with actual sharing token

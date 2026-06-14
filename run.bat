@@ -11,10 +11,10 @@ echo.
 
 cd /d "%~dp0"
 
-if exist "target\spark-delta-sharing-app-1.0.0.jar" (
+if exist "build\libs\spark-delta-sharing-app-1.0.0.jar" (
     echo [INFO] Running built JAR...
-    java -jar target\spark-delta-sharing-app-1.0.0.jar
+    java -jar build\libs\spark-delta-sharing-app-1.0.0.jar
 ) else (
-    echo [INFO] JAR not found. Building project first...
-    mvn spring-boot:run
+    echo [INFO] JAR not found. Running via Gradle...
+    call gradlew.bat bootRun
 )
